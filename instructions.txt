@@ -1,0 +1,44 @@
+     # Link para download do tesseract OCR utilizado no projeto #
+
+>https://www.mediafire.com/file/z3e45acxeugg639/tesseract-ocr-w64-setup-v5.3.0.20221214.exe/file
+
+Instrução:
+
+Para ultilização do sistema E-vision é necessário que atráves do comando python 'pip install'
+sejam instaladas as bibliotecas presentes no arquivo 'requirements.txt':
+
+  ex: 'pip install -r requirements.txt'.
+
+Também será necessário o uso de uma câmera para captação da imagem.
+
+     ## Passo a passo para o uso do sistema e-vision ##
+
+1-Com a mão no campo de visão da câmera encoste o dedão no dedo mindinha para iniciar o modo de captção de imagem(Será reproduzido um audio de confirmação);
+2-10 segundos apos isso, será feita a captação da imagem e analize do texto presente na imagem;
+3-logo após, o texto presente na imagem será reprozido atraves da biblioteca pyttsx3(Text to Speach);
+
+
+                    ## Recomenadações ##
+
+O uso de uma webcam ou câmera de qualidade, ambiente com boa iluminação.
+
+
+                    ## Adaptação para linux ##
+
+Diretório do Tesseract-OCR: No Linux, o Tesseract geralmente é instalado em um diretório que está no PATH do sistema, portanto, não é necessário definir TESSDATA_PREFIX.
+
+Instalação do Tesseract: Certifique-se de que o Tesseract está instalado. Você pode instalá-lo usando um gerenciador de pacotes:
+ex:
+sudo apt-get install tesseract-ocr
+sudo apt-get install libtesseract-dev
+
+Motor de fala (pyttsx3): No Linux, pyttsx3 usa espeak por padrão, que já deve estar instalado na maioria das distribuições. Caso contrário, instale com:
+ex:
+sudo apt-get install espeak
+
+Instalar as dependências no Linux:
+ex:
+sudo apt-get install python3-opencv
+pip install mediapipe pytesseract pyttsx3
+sudo apt-get install tesseract-ocr
+

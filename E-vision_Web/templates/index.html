@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>TecVision</title>
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script> <!-- Adicione o jQuery -->
+</head>
+<body>
+    <h1>TecVision</h1>
+    <div style="display: flex;">
+        <div style="flex: 1;">
+            <img src="{{ url_for('video_feed') }}" width="640" height="480">
+        </div>
+        <div style="flex: 1;">
+            <h3>Texto Extraído:</h3>
+            <p id="textoExtraido">{{ texto_extraido }}</p>
+            <h2 id="debugTexto"></h2>  <!-- Elemento de depuração -->
+            <button onclick="reproduzirAudio()">Reproduzir Áudio</button> <!-- Botão para reproduzir o áudio -->
+        </div>
+    </div>
+
+    <script>
+        // Função para atualizar dinamicamente o texto extraído na página
+        function atualizarTexto() {
+            $.ajax({
+                url: "/texto_extraido",  // Rota no servidor Flask para obter o texto extraído
+                type: "GET",
+                success: function(response) {
+                    $("#textoExtraido").text(response);
+                    $("#debugTexto").text("Texto atualizado dinamicamente.");
+                    reproduzirAudio();
+                },
+                error: function(xhr, status, error) {
+                    console.error("Erro na requisição AJAX:", error);
+                }
+            });
+        }
+
+        // Função para reproduzir o texto extraído como áudio
+        function reproduzirAudio() {
+            var textoExtraido = $("#textoExtraido").text();
+            if (textoExtraido.trim() !== "") {
+                var utterance = new SpeechSynthesisUtterance(textoExtraido);
+                speechSynthesis.speak(utterance);
+            }
+        }
+        
+        // Exemplo de código JavaScript para atualizar o texto automaticamente
+        setInterval(atualizarTexto, 5000);  // Atualiza a cada 5 segundos (5000 milissegundos)
+    </script>
+</body>
+</html>
